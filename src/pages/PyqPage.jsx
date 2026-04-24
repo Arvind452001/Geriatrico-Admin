@@ -88,27 +88,30 @@ export default function PyqPage() {
       </div>
 {/*  */}
       {/* ================= TABLE ================= */}
-      <div style={card}>
-        <table style={table}>
-
-          <thead style={thead}>
+      <div  style={{
+          background: "#fff",
+          borderRadius: "10px",
+          overflow: "hidden",
+        }}>
+        <table style={{ width: "100%", borderCollapse: "collapse" }}>
+          <thead style={{ background: "#3D06BA", color: "#fff" }}>
             <tr>
-              <th>#</th>
-              <th>Year</th>
-              <th>Subject</th>
-              <th>Questions</th>
+              <th style={th}>#</th>
+              <th style={th}>Year</th>
+              <th style={th}>Subject</th>
+              <th style={th}>Questions</th>
               {/* <th>Status</th> */}
-              <th>Actions</th>
+              <th style={th}>Actions</th>
             </tr>
           </thead>
 
           <tbody>
             {currentData.map((item, i) => (
               <tr key={item.pyq_id} style={tr}>
-                <td>{start + i + 1}</td>
-                <td>{item.year}</td>
-                <td>{item.subject}</td>
-                <td>{item.total_questions}</td>
+                <td style={td}>{start + i + 1}</td>
+                <td style={td}>{item.year}</td>
+                <td style={td}>{item.subject}</td>
+                <td style={td}>{item.total_questions}</td>
 
                 {/* <td>
                   <span style={item.is_played ? statusActive : statusInactive}>
@@ -116,7 +119,7 @@ export default function PyqPage() {
                   </span>
                 </td> */}
 
-                <td>
+                <td style={td}>
                   <button onClick={() => handleView(item)} style={viewBtn}>👁️</button>
                   <button onClick={() => handleDelete(item.pyq_id)} style={deleteBtn}>🗑️</button>
                 </td>
@@ -214,6 +217,8 @@ const StatBox = ({ title, value }) => (
 );
 
 // ================= STYLES ================= //
+const th = { padding: "10px", textAlign: "left" };
+const td = { padding: "10px", borderBottom: "1px solid #ddd" };
 
 const page = {
   padding: "20px",

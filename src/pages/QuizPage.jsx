@@ -112,11 +112,11 @@ export default function QuizPage() {
       {/* ================= LIST VIEW ================= */}
       {viewMode === "list" && (
         <div
-          style={{
-            marginTop: "20px",
-            background: "#fff",
-            borderRadius: "10px",
-          }}
+        style={{
+          background: "#fff",
+          borderRadius: "10px",
+          overflow: "hidden",
+        }}
         >
           <table style={{ width: "100%" }}>
             <thead style={{ background: "#3D06BA", color: "#fff" }}>
