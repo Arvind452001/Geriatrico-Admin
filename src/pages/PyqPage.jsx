@@ -152,7 +152,7 @@ export default function PyqPage() {
               Prev
             </button>
 
-            <button
+            <button className="mx-2"
               onClick={() => setCurrentPage(p => p + 1)}
               disabled={currentPage === totalPages}
             >

@@ -184,8 +184,8 @@ export default function QuizPage() {
                 disabled={currentPage === 1}
               >
                 Prev
-              </button>
-              <button
+              </button >
+              <button className="mx-2"
                 onClick={() => setCurrentPage((p) => p + 1)}
                 disabled={currentPage === totalPages}
               >

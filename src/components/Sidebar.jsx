@@ -1,6 +1,9 @@
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
+import { useState } from "react";
 
 export default function Sidebar({ collapsed }) {
+  const [hovered, setHovered] = useState(null);
+
   return (
     <nav
       style={{
@@ -20,7 +23,7 @@ export default function Sidebar({ collapsed }) {
         style={{
           padding: "20px",
           display: "flex",
-           background: "#fff",
+          background: "#fff",
           justifyContent: "center",
         }}
       >
@@ -35,13 +38,11 @@ export default function Sidebar({ collapsed }) {
       </div>
 
       <ul style={{ listStyle: "none", padding: "10px" }}>
-
         {menuItem("/dashboard", "fa-home", "Dashboard")}
         {menuItem("/users", "fa-users", "Users")}
         {menuItem("/quiz", "fa-question-circle", "Quiz")}
         {menuItem("/create-quiz", "fa-plus", "Create Quiz")}
         {menuItem("/pyq", "fa-file-alt", "PYQ")}
-
       </ul>
     </nav>
   );
@@ -49,21 +50,33 @@ export default function Sidebar({ collapsed }) {
   function menuItem(path, icon, label) {
     return (
       <li key={path} style={{ marginBottom: "10px" }}>
-        <Link
+        <NavLink
           to={path}
-          style={{
-            display: "flex",
-            alignItems: "center",
-            color: "#fff",
-            textDecoration: "none",
-            padding: "10px",
-            borderRadius: "6px",
-            whiteSpace: "nowrap"
+          onMouseEnter={() => setHovered(path)}
+          onMouseLeave={() => setHovered(null)}
+          style={({ isActive }) => {
+            const isHover = hovered === path;
+
+            return {
+              display: "flex",
+              alignItems: "center",
+              color: "#fff",
+              textDecoration: "none",
+              padding: "10px",
+              borderRadius: "6px",
+              whiteSpace: "nowrap",
+              background: isActive
+                ? "#5B21F4"
+                : isHover
+                ? "#4C1DDB"
+                : "transparent",
+              transform: isHover ? "translateX(4px)" : "translateX(0)",
+              transition: "all 0.2s ease"
+            };
           }}
         >
           <i className={`fa ${icon}`} style={{ minWidth: "20px" }}></i>
 
-          {/* 👇 PERFECT HIDE */}
           <span
             style={{
               marginLeft: "10px",
@@ -74,7 +87,7 @@ export default function Sidebar({ collapsed }) {
           >
             {label}
           </span>
-        </Link>
+        </NavLink>
       </li>
     );
   }
